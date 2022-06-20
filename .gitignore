@@ -1,0 +1,10 @@
+# Built asset files
+assets/dist/
+editor-style.css
+editor-style.rtl.css
+rtl.css
+style.css
+map/*
+
+# Dependencies for build
+node_modules
