@@ -232,7 +232,7 @@ function enqueue_block_editor_assets() {
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
-			'themeUrl'      => get_stylesheet_directory_uri(),
+			'themeUrl'      => get_template_directory_uri(),
 			'languages'     => $languages,
 			'siteLanguage'  => $languages[0]['shortname'],
 			'wmfIsMainSite' => wmf_is_main_site(),

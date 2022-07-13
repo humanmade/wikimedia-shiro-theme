@@ -25,9 +25,9 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	$text2Class = sizeof($texts) >= 2 ? "grid-item grid-text grid-text-2" : "grid-item";
 	$text3Class = sizeof($texts) >= 3 ? "grid-item grid-text grid-text-3" : "grid-item";
 
-	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'symbols_grid', get_template_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
-	
+
 	ob_start();
 	?>
 
@@ -62,7 +62,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'story_carousel', get_stylesheet_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'story_carousel', get_template_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -117,7 +117,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 				<span><?php echo esc_html( $atts['location'] ); ?></span>
 			</p>
 		<?php } ?>
-		
+
 		<?php if ( !empty($atts['since'] ) ) { ?>
 			<p class="story-since flex flex-all">
 				<span><?php echo esc_html( $atts['since'] ); ?></span>
@@ -127,7 +127,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 		<p class="story-desc p"><?php echo wp_kses_post( $content ) ?></p>
 	</div>
 
-	<?php 
+	<?php
 	return (string) ob_get_clean();
 }
 add_shortcode( 'story', 'wmf_story_shortcode_callback' );
@@ -153,11 +153,11 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	for ($i=0; $i < count($atts['lang_list']); $i++) { 
+	for ($i=0; $i < count($atts['lang_list']); $i++) {
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][$i] . '_wikipedia', strtoupper($atts['lang_list'][$i]) . ' Wikipedia' ) );
 	}
 
-	wp_enqueue_script( 'recent_edits', get_stylesheet_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'recent_edits', get_template_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'recent_edits', "var recentEditsAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -215,7 +215,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$margin = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
 	$classes = "timeline " . $atts['class'] . $margin;
 
-	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'timeline', get_template_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', "var timelineAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -311,13 +311,13 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 				<?php echo esc_html( $atts['title'] )  . wp_kses_post( $content ) ?>
 			</div>
 		</div>
-	<?php } else { 
+	<?php } else {
 		if ( $atts['reverse'] === '0') { ?>
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr($atts['class']) ?>">
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php if ( $image_id ) { 
+						<?php if ( $image_id ) {
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
 						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
@@ -329,7 +329,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr($atts['class']) ?>">
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php if ( $image_id ) { 
+						<?php if ( $image_id ) {
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
 						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
@@ -338,7 +338,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 				</div>
 			</div>
-	<?php } 
+	<?php }
 	}
 	return (string) ob_get_clean();
 }
@@ -360,7 +360,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'movement', get_stylesheet_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'movement', get_template_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'movement', "var movementAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -441,9 +441,9 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
-	$atts['directory'] = get_stylesheet_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
-	$atts['url_edits'] = get_stylesheet_directory_uri() . $atts['path_edits'];
-	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
+	$atts['directory'] = get_template_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
+	$atts['url_edits'] = get_template_directory_uri() . $atts['path_edits'];
+	$atts['url_views'] = get_template_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
@@ -456,8 +456,8 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro-admin' ) );
 	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro-admin' ) );
 
-	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+	wp_enqueue_script( 'top-data', get_template_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'top-data', "var topAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -597,7 +597,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
 
 /**
- * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js 
+ * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js
  * which searches for <strong class="easter-egg"> in .section and .movement.
  *
  * @param array  $atts    Shortcode attributes array.
@@ -613,9 +613,9 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'wp20_easter_eggs', get_template_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . wp_json_encode($atts) . ";");
-	
+
 	ob_start();
 	?>
 
@@ -623,7 +623,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 
-	<?php 
+	<?php
 	return (string) ob_get_clean();
 
 }
@@ -643,7 +643,7 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'egg' );
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
-	
+
 	ob_start();
 	?>
 
@@ -651,14 +651,14 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 
-	<?php 
+	<?php
 	return (string) ob_get_clean();
 
 }
 add_shortcode( 'egg', 'egg_shortcode_callback' );
 
 /*
- * Utility function to deal with the way 
+ * Utility function to deal with the way
  * WordPress auto formats text in a shortcode.
  */
 function custom_filter_shortcode_text($text = "") {
