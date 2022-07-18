@@ -24,6 +24,10 @@
     "make-themes-mo": "wp i18n make-mo languages",
     "make-themes-json": "wp i18n make-json languages --no-purge"
   },
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/reaktivstudios/rkv-starter-theme.git"
@@ -52,7 +56,7 @@
     "eslint-plugin-jsdoc": "^29.2.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-sort-destructure-keys": "^1.4.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -77,7 +81,7 @@
     "postcss": "^8.4.14",
     "postcss-assets": "^5.0.0",
     "prettier": "npm:wp-prettier@^2.0.5",
-    "sass": "^1.51.0",
+    "sass": "^1.52.3",
     "stylelint-config-wordpress": "^17.0.0",
     "stylelint-order": "^4.1.0",
     "webpack": "^4.46.0",
@@ -86,7 +90,7 @@
     "webpack-rtl-plugin": "^2.0.0"
   },
   "dependencies": {
-    "@wordpress/i18n": "^4.9.0",
+    "@wordpress/i18n": "^4.11.0",
     "bootstrap": "^4.6.1",
     "composer": "^4.1.0",
     "graceful-fs": "^4.2.10",
