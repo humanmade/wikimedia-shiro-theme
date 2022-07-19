@@ -24,9 +24,9 @@
     ],
     "make-themes-mo": "wp i18n make-mo languages",
     "make-themes-json": "wp i18n make-json languages --no-purge",
-    "bump:patch": "bump patch --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
-    "bump:minor": "bump minor --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
-    "bump:major": "bump major --commit 'Prepare v%s release' package.json assets/src/sass/style.scss"
+    "bump:patch": "bump patch --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
+    "bump:minor": "bump minor --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
+    "bump:major": "bump major --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss"
   },
   "engines": {
     "node": "14.x",
