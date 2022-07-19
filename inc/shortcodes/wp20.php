@@ -106,7 +106,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 
 	ob_start();
 	?>
-	<div class="story-content wysiwyg" style="display: none;">
+	<div class="story-content" style="display: none;">
 		<?php if ( isset($image_url) ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
 		<?php } ?>
@@ -222,7 +222,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
-		<div class="wysiwyg timeline-container">
+		<div class="timeline-container">
 			<div class="milestones-window">
 				<div class="milestones flex flex-all">
 					<?php echo wp_kses_post( $content ) ?>
@@ -294,7 +294,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
-	$classes = $atts['bg_color'] === '1' ? "wysiwyg section mod-padding-vertical bg-ltgray " . $margin : "mw-980 wysiwyg section " . $margin;
+	$classes = $atts['bg_color'] === '1' ? "section mod-padding-vertical bg-ltgray " . $margin : "mw-980 section " . $margin;
 	$atts['class'] = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' :  $atts['class'];
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
@@ -367,7 +367,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement section mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
-		<div class="mw-980 wysiwyg">
+		<div class="mw-980">
 			<div class="w-68p">
 				<?php echo wp_kses_post( $content ); ?>
 			</div>
@@ -465,7 +465,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 
 	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="top-data mw-980 mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div>
-			<div class="mod-margin-bottom_xs wysiwyg">
+			<div class="mod-margin-bottom_xs">
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
 			<div class="mod-margin-bottom_xs data-options">
@@ -647,7 +647,7 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div class="easter-egg-content wysiwyg">
+	<div class="easter-egg-content">
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 
