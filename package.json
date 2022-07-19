@@ -1,7 +1,7 @@
 {
   "name": "shiro-wordpress-theme-develop",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wikimedia Foundation parent theme",
   "main": "gulpfile.js",
   "scripts": {
