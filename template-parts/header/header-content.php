@@ -73,7 +73,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 			<?php endif; ?>
 					<div class="header-animation">
 						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) :
-							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")');
+							echo esc_attr('background-image: url("' . get_template_directory_uri() .  $wmf_alt_header_image_url . '")');
 							endif;
 						?>">
 
@@ -177,7 +177,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
                         </div>
 						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
-							<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
+							<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
 							<?php echo esc_html( $wmf_homedonate_secure ); ?>
 						</span>
 					</div>
