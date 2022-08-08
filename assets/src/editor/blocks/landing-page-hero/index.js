@@ -10,6 +10,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
+import { SelectControl, Panel, PanelBody, } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,7 +21,6 @@ import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter
 import ImagePicker from '../../components/image-picker';
 import blockStyles, { applyDefaultStyle } from '../../helpers/block-styles';
 import './style.scss';
-import { SelectControl, Panel, PanelBody, } from '@wordpress/components';
 
 export const name = 'shiro/landing-page-hero';
 
@@ -131,6 +131,8 @@ export const settings = {
 
 		const blockProps = useBlockProps( { className: 'hero' } );
 
+		const ctaButtonAdditionalClass = ctaButtonStyle ? `hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
+
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
 				<InspectorControls key="setting">
@@ -171,17 +173,19 @@ export const settings = {
 							value={ title }
 							onChange={ title => setAttributes( { title } ) }
 						/>
-						<RichText
-							className="hero__description"
-							keepPlaceholderOnFocus
-							multiline="p"
-							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
-							tagName="div"
-							value={ description }
-							onChange={ description => setAttributes( { description } ) }
-						/>
+						{ description && (
+							<RichText
+								className="hero__description"
+								keepPlaceholderOnFocus
+								multiline="p"
+								placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
+								tagName="div"
+								value={ description }
+								onChange={ description => setAttributes( { description } ) }
+							/>
+						) }
 						<Cta
-							className={ `hero__call-to-action cta-button hero__cta-button hero__cta-button--${ ctaButtonStyle }` }
+							className={ `hero__call-to-action cta-button ${ ctaButtonStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
 							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
@@ -241,6 +245,8 @@ export const settings = {
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
 
+		const ctaButtonAdditionalClass = ctaButtonStyle ? `hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
+
 		return (
 			<div { ...applyDefaultStyle( blockProps ) }>
 				<header className="hero__header">
@@ -255,15 +261,17 @@ export const settings = {
 							tagName="h1"
 							value={ title }
 						/>
-						<RichText.Content
-							className="hero__description"
-							multiline="p"
-							tagName="div"
-							value={ description }
-						/>
+						{ description && (
+							<RichText.Content
+								className="hero__description"
+								multiline="p"
+								tagName="div"
+								value={ description }
+							/>
+						) }
 						{ buttonLink && (
 							<a
-								className={ `hero__call-to-action cta-button hero__cta-button hero__cta-button--${ ctaButtonStyle }` }
+								className={ `hero__call-to-action cta-button ${ ctaButtonAdditionalClass }` }
 								href={ buttonLink }
 							>
 								{ buttonText }
