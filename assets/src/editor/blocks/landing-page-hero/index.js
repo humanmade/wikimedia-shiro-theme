@@ -131,7 +131,7 @@ export const settings = {
 
 		const blockProps = useBlockProps( { className: 'hero' } );
 
-		const ctaButtonAdditionalClass = ctaButtonStyle ? `hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
+		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
@@ -173,19 +173,17 @@ export const settings = {
 							value={ title }
 							onChange={ title => setAttributes( { title } ) }
 						/>
-						{ description && (
-							<RichText
-								className="hero__description"
-								keepPlaceholderOnFocus
-								multiline="p"
-								placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
-								tagName="div"
-								value={ description }
-								onChange={ description => setAttributes( { description } ) }
-							/>
-						) }
+						<RichText
+							className="hero__description"
+							keepPlaceholderOnFocus
+							multiline="p"
+							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
+							tagName="div"
+							value={ description }
+							onChange={ description => setAttributes( { description } ) }
+						/>
 						<Cta
-							className={ `hero__call-to-action cta-button ${ ctaButtonStyle }` }
+							className={ `hero__call-to-action cta-button${ ctaButtonStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
 							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
@@ -245,7 +243,7 @@ export const settings = {
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
 
-		const ctaButtonAdditionalClass = ctaButtonStyle ? `hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
+		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) }>
@@ -271,7 +269,7 @@ export const settings = {
 						) }
 						{ buttonLink && (
 							<a
-								className={ `hero__call-to-action cta-button ${ ctaButtonAdditionalClass }` }
+								className={ `hero__call-to-action cta-button${ ctaButtonAdditionalClass }` }
 								href={ buttonLink }
 							>
 								{ buttonText }
