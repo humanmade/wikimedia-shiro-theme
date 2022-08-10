@@ -92,6 +92,10 @@ export const
 			name: 'as-link',
 			label: __( 'As link', 'shiro' ),
 		},
+		{
+			name: 'transparent',
+			label: __( 'Transparent with border', 'shiro' ),
+		},
 	],
 	filters = [
 		{
