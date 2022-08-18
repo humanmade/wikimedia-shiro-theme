@@ -5,7 +5,7 @@
 .accordion-item {
 	border-bottom: 1px solid;
 	overflow: hidden;
-	padding: 10px 20px;
+	padding: 14px 20px;
 
 	&__title {
 		align-items: center;
@@ -13,19 +13,19 @@
 		border: 0;
 		display: flex;
 		font-size: 26px;
-		padding: 10px 20px;
 		position: relative;
 		text-align: left;
 		width: 100%;
 
 		&-text{
 			font-weight: normal;
+			margin-bottom: 0;
 		}
 
 		&::after {
 			display: flex;
 			position: absolute;
-			right: 12px;
+			right: 0;
 			content: "\d7";
 			font-size: 20px;
 			width: 20px;
@@ -38,5 +38,12 @@
 
 	&__content {
 		height: 0;
+		display: none;
+	}
+
+	&[aria-expanded="true"] {
+		.accordion-item__content {
+			display: block;
+		}
 	}
 }
