@@ -7,26 +7,36 @@
  */
 import { __ } from '@wordpress/i18n';
 
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+
 export const
-	name = 'shiro/accordion-block',
+	name = 'shiro/accordion',
 	settings = {
 		apiVersion: 2,
 		title: __( 'Accordion', 'shiro-admin' ),
-		icon: 'post',
+		icon: 'menu',
 		category: 'wikimedia',
 		supports: {
 			align: [ 'center', 'full' ],
 		},
-		/**
-		 * Edit the block.
-		 */
-		 edit: function () {
-			return <p> Hello world (from the editor)</p>;
+		edit: () => {
+			const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
+
+			return (
+				<div { ...blockProps }>
+					<div className="accordion-wrapper">
+						<InnerBlocks
+							allowedBlocks={ [ 'shiro/accordion-item' ] }
+						/>
+					</div>
+				</div>
+			);
 		},
-		/**
-		 * Save nothing, to allow for server-size rendering.
-		 */
-		 save: function () {
-			return <p> Hola mundo (from the frontend) </p>;
+		save: () => {
+			return (
+				<div className="accordion-wrapper">
+					<InnerBlocks.Content />
+				</div>
+			);
 		},
 	};
