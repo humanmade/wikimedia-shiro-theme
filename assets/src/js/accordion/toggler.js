@@ -9,7 +9,7 @@
  * @param {string} selector Class name to search for.
  * @returns {*} Ancestor element.
  */
- const findAncestor = ( element, selector ) => {
+const findAncestor = ( element, selector ) => {
 	// eslint-disable-next-line no-cond-assign
 	while ( ( element = element.parentElement ) && ! element.classList.contains( selector ) );
 

@@ -9,38 +9,42 @@ import { __ } from '@wordpress/i18n';
 
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
+/**
+ * Internal dependencies
+ */
+
 import './style.scss';
 
-import './toggler';
+import '../../../js/accordion/toggler';
 
 export const name = 'shiro/accordion';
 
 export const settings = {
-	apiVersion: 2,
-	title: __( 'Accordion', 'shiro-admin' ),
-	icon: 'menu',
-	category: 'wikimedia',
-	supports: {
-		align: [ 'center', 'full' ],
-	},
-	edit: () => {
-		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
+		apiVersion: 2,
+		title: __( 'Accordion', 'shiro-admin' ),
+		icon: 'menu',
+		category: 'wikimedia',
+		supports: {
+			align: [ 'center', 'full' ],
+		},
+		edit: () => {
+			const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
 
-		return (
-			<div { ...blockProps }>
-				<div className="accordion-wrapper">
-					<InnerBlocks
-						allowedBlocks={ [ 'shiro/accordion-item' ] }
-					/>
+			return (
+				<div { ...blockProps }>
+					<div className="accordion-wrapper">
+						<InnerBlocks
+							allowedBlocks={ [ 'shiro/accordion-item' ] }
+						/>
+					</div>
 				</div>
-			</div>
-		);
-	},
-	save: () => {
-		return (
-			<div className="accordion-wrapper">
-				<InnerBlocks.Content />
-			</div>
-		);
-	},
-};
+			);
+		},
+		save: () => {
+			return (
+				<div className="accordion-wrapper">
+					<InnerBlocks.Content />
+				</div>
+			);
+		},
+	};
