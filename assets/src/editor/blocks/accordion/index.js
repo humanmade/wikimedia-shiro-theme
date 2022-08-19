@@ -13,8 +13,6 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  * Internal dependencies
  */
 
-import './style.scss';
-
 import '../../../js/accordion/toggler';
 
 export const name = 'shiro/accordion';
