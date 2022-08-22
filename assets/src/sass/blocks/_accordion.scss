@@ -5,7 +5,7 @@
 .accordion-item {
 	border-bottom: 1px solid;
 	overflow: hidden;
-	padding: 14px 20px;
+	padding: 20px;
 
 	&__title {
 		align-items: center;
@@ -13,7 +13,6 @@
 		border: 0;
 		display: flex;
 		font-size: 1.5rem;
-		margin-bottom: 20px;
 		position: relative;
 		text-align: left;
 		width: 100%;
@@ -49,6 +48,7 @@
 	&[aria-expanded="true"] {
 		.accordion-item__content {
 			display: block;
+			margin-top: 20px;
 		}
 	}
 }
