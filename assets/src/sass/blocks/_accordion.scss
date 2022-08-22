@@ -12,7 +12,8 @@
 		background: none;
 		border: 0;
 		display: flex;
-		font-size: 26px;
+		font-size: 1.5rem;
+		margin-bottom: 20px;
 		position: relative;
 		text-align: left;
 		width: 100%;
@@ -39,6 +40,10 @@
 	&__content {
 		height: 0;
 		display: none;
+
+		p {
+			font-size: 1.5rem;
+		}
 	}
 
 	&[aria-expanded="true"] {

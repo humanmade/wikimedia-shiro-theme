@@ -1,5 +1,15 @@
 .accordion-item {
-	&__title {
-		border-bottom: 2px solid red;
+
+	& &__title{
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&-text {
+			font-family: var(--font-family-serif);
+			font-weight: normal;
+		}
 	}
 }
+
