@@ -7,7 +7,9 @@
  */
 import { __ } from '@wordpress/i18n';
 
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, InspectorControls, useSetting } from '@wordpress/block-editor';
+
+import { PanelBody, ColorPalette } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -17,6 +19,21 @@ import '../../../js/accordion/toggler';
 
 export const name = 'shiro/accordion';
 
+const CUSTOM_COLORS = [
+    {
+        color: '#f00',
+        name: 'Red',
+    },
+    {
+        color: '#fff',
+        name: 'White',
+    },
+    {
+        color: '#00f',
+        name: 'Blue',
+    },
+];
+
 export const settings = {
 		apiVersion: 2,
 		title: __( 'Accordion', 'shiro-admin' ),
@@ -25,10 +42,28 @@ export const settings = {
 		supports: {
 			align: [ 'center', 'full' ],
 		},
-		edit: () => {
+		attributes: {
+			fontColor: {
+				type: 'string',
+			},
+		},
+		edit: ( { attributes, setAttributes } ) => {
 			const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
-
+			const { fontColor } = attributes;
 			return (
+				<>
+				<InspectorControls>
+					<div>
+                        <p>Set title font color:</p>
+                    </div>
+                <PanelBody>
+					<ColorPalette
+                            value={ fontColor }
+                            colors={ [ ...CUSTOM_COLORS, ...useSetting( 'color.palette' ) ] }
+                            onChange={ ( value ) => setAttributes( { fontColor: value } ) }
+					/>
+                </PanelBody>
+            </InspectorControls>
 				<div { ...blockProps }>
 					<div className="accordion-wrapper">
 						<InnerBlocks
@@ -36,12 +71,15 @@ export const settings = {
 						/>
 					</div>
 				</div>
+				</>
 			);
 		},
 		save: () => {
 			return (
-				<div className="accordion-wrapper">
-					<InnerBlocks.Content />
+				<div>
+					<div className="accordion-wrapper">
+						<InnerBlocks.Content />
+					</div>
 				</div>
 			);
 		},
