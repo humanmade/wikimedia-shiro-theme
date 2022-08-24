@@ -2,4 +2,10 @@
 	&__title {
 		border-bottom: 2px solid;
 	}
+
+	&:not[aria-expanded="true"] {
+		.accordion-item__content {
+			display: none;
+		}
+	}
 }

@@ -11,52 +11,50 @@
 		align-items: center;
 		background: none;
 		border: 0;
+		cursor: pointer;
 		display: flex;
 		font-size: 26px;
 		position: relative;
 		text-align: left;
 		width: 100%;
 
-		&-text{
-			font-weight: normal;
+		&-text {
+			font-weight: 400;
 			margin-bottom: 0;
 		}
 
 		&::after {
+			content: "\d7";
 			display: flex;
+			font-size: 20px;
 			position: absolute;
 			right: 0;
-			content: "\d7";
-			font-size: 20px;
 			width: 20px;
 
 			.accordion-item[aria-expanded="false"] & {
 				transform: rotate(45deg);
 			}
 		}
-	}
-}
 
-.block-editor-block-list__block { // specific for the editor.
-	.accordion-item {
-		&__content {
-			height: auto !important;
-			display: block !important;
+		&:hover {
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 		}
 	}
-}
 
-:not(.block-editor-block-list__block) {
-	.accordion-item {
-		&__content {
-			height: 0;
-			display: none;
+	&__content {
+		height: 0;
+		overflow: hidden;
+		transition: height 500ms ease-in;
+
+		p:last-child {
+			margin-bottom: 0;
 		}
+	}
 
-		&[aria-expanded="true"] {
-			.accordion-item__content {
-				display: block;
-			}
+	&[aria-expanded="true"],
+	&:focus-within {
+		.accordion-item__content { // stylelint-disable selector-class-pattern
+			height: auto;
 		}
 	}
 }
