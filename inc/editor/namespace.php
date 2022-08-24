@@ -52,6 +52,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/banner',
 		'shiro/blog-list',
 		'shiro/card',
+		'shiro/collapsible-text',
 		'shiro/contact',
 		'shiro/double-heading',
 		'shiro/linked-toc-columns',
