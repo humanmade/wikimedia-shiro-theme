@@ -9,6 +9,9 @@
  */
 const toggleAccordionItem = e => {
 	e.preventDefault();
+
+	closeAllItems(); // closes any opened item.
+
 	const parent = e.target.closest( '.accordion-item' );
 
 	if ( parent.getAttribute( 'aria-expanded' ) === 'true' ) {
@@ -16,6 +19,21 @@ const toggleAccordionItem = e => {
 	} else {
 		openItem( parent );
 	}
+};
+
+/**
+ * Closes all opened items.
+ *
+ * @param {Event} e Click event.
+ */
+const closeAllItems = e => {
+	const accordionItems = document.querySelectorAll( '.accordion-item' );
+
+	accordionItems.forEach(
+		accordionItem => {
+			accordionItem.setAttribute( 'aria-expanded', false );
+		}
+	);
 };
 
 /**
