@@ -7,8 +7,8 @@ $collapsible-text: (
   'line-height': 1.4,
   'duration': 500ms,
   'easing': ease,
-  'text-color': #34495e,
-  'trigger-color': #2980b9,
+  'text-color': #000000,
+  'trigger-color': #5848B3,
   'bg-color': #ffffff
 );
 
@@ -55,7 +55,7 @@ $collapsible-text-height: map-get($collapsible-text, 'font-size') * map-get($col
   }
   &.expanded {
     .collapsible-text__content {
-      max-height: 100px; // great value for height animation
+      max-height: 100%; // great value for height animation
     }
     .collapsible-text__content::before,
     .trigger {
