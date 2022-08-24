@@ -6,8 +6,8 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 
 import './style.scss';
 
@@ -25,6 +25,9 @@ export const settings = {
 	},
 
 	attributes: {
+		fontColor: {
+			type: 'string',
+		},
 		title: {
 			type: 'string',
 			source: 'html',
@@ -32,15 +35,25 @@ export const settings = {
 		}
 	},
 
+	usesContext: [ 'accordion/fontColor' ],
+
 	/**
 	 * Edit the block.
 	 */
-		edit: ( {
+	edit: ( {
 		attributes,
 		setAttributes,
-		setFocus,
+		context,
 	} ) => {
 		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
+		const fontColor = context['accordion/fontColor'];
+
+		if ( fontColor !== attributes.fontColor ) {
+			console.log( 'setting color attribute' );
+			setTimeout( () => setAttributes( { fontColor } ) );
+		}
+
+		console.log ( fontColor );
 		return (
 			<div { ...blockProps }>
 				<div aria-expanded className="accordion-item">
@@ -48,13 +61,11 @@ export const settings = {
 						<RichText
 							className="accordion-item__title-text"
 							formattingControls={ [] }
-							placeholder={
-								'Add Accordion Title...'
-							}
+							placeholder={ __( 'Add Accordion Title...', 'shiro-admin' ) }
 							tagName="h3"
 							value={ attributes.title }
-							onChange={ content => setAttributes( { title: content } ) }
-							onFocus={ setFocus }
+							onChange={ title => setAttributes( { title } ) }
+							style={ fontColor && { color: fontColor } }
 						></RichText>
 					</div>
 
@@ -69,14 +80,17 @@ export const settings = {
 	/**
 	 * Save block markup.
 	 */
-	save: ( { attributes } ) => {
+	save: ( { attributes, context } ) => {
+		const { fontColor, title } = attributes;
+
 		return (
 			<div aria-expanded={ false } className="accordion-item">
-				<button className="accordion-item__title">
+				<button className="accordion-item__title" style={ fontColor } >
 					<RichText.Content
 						className="accordion-item__title-text"
 						tagName="h3"
-						value={ attributes.title }
+						value={ title }
+						style={ fontColor && { color: fontColor } }
 					/>
 				</button>
 
