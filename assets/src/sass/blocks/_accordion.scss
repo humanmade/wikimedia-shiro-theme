@@ -29,10 +29,11 @@
 			font-size: 20px;
 			position: absolute;
 			right: 0;
+			transform: rotate(45deg);
 			width: 20px;
 
-			.accordion-item[aria-expanded="false"] & {
-				transform: rotate(45deg);
+			.accordion-item[aria-expanded] & {
+				transform: rotate(0deg);
 			}
 		}
 
@@ -44,16 +45,16 @@
 	&__content {
 		height: 0;
 		overflow: hidden;
-		transition: height 500ms ease-in;
 
 		p:last-child {
 			margin-bottom: 0;
 		}
 	}
 
-	&[aria-expanded="true"] {
+	&[aria-expanded] {
 		.accordion-item__content { // stylelint-disable selector-class-pattern
 			height: auto;
+			padding-top: 14px;
 		}
 	}
 }
