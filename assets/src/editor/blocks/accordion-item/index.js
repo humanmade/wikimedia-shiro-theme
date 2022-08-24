@@ -32,7 +32,7 @@ export const settings = {
 		setFocus,
 	} ) => {
 		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
-
+		const ALLOWED_BLOCKS = wp.blocks.getBlockTypes().map(block => block.name).filter(blockName => blockName !== 'shiro/accordion-item');
 		return (
 			<div { ...blockProps }>
 				<div aria-expanded className="accordion-item">
@@ -51,7 +51,9 @@ export const settings = {
 					</div>
 
 					<div className="accordion-item__content">
-						<InnerBlocks/>
+						<InnerBlocks
+							allowedBlocks={ ALLOWED_BLOCKS }
+						/>
 					</div>
 				</div>
 			</div>
