@@ -9,7 +9,7 @@
 
  import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
- import { PanelBody, RichText, SelectControl } from '@wordpress/components';
+ import { PanelBody, SelectControl, RichText } from '@wordpress/components';
 
  import { useState } from '@wordpress/element';
 
@@ -43,7 +43,7 @@
 						label="Size"
 						value={ size }
 						options={ [
-							{ label: 'Big', value: '100%' },
+							{ label: 'Big', value: '75%' },
 							{ label: 'Medium', value: '50%' },
 							{ label: 'Small', value: '25%' },
 						] }
@@ -52,18 +52,13 @@
 					</PanelBody>
 			 	</InspectorControls>
 					<div { ...blockProps }>
-						<div className="">
-							<RichText
-								className="accordion-item__title-text"
-								formattingControls={ [] }
-								placeholder={
-									'Add Accordion Title...'
-								}
-								tagName="h3"
-								value={ attributes.title }
-								onChange={ content => setAttributes( { title: content } ) }
-								onFocus={ setFocus }
-							></RichText>
+						<div class="collapsible-text__wrapper">
+							<div class="collapsible-text" onclick="this.classList.add('expanded')">
+								<div class="collapsible-text__content">
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+								</div>
+								<span class="trigger">+ read more</span>
+							</div>
 						</div>
 					</div>
 				</>
@@ -71,11 +66,14 @@
 		 },
 		 save: ( attributes ) => {
 			 return (
-				 <div>
-					 <div>
-						<RichText.Content tagName="h2" value={ attributes.content } />
-					 </div>
-				 </div>
+				<div class="collapsible-text__wrapper">
+					<div class="collapsible-text" onclick="this.classList.add('expanded')">
+						<div class="collapsible-text__content">
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+						</div>
+						<span class="trigger">+ read more</span>
+					</div>
+			  	</div>
 			 );
 		 },
 	 };
