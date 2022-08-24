@@ -19,8 +19,17 @@ export const settings = {
 	title: __( 'Accordion Item', 'shiro-admin' ),
 	icon: 'minus',
 	category: 'wikimedia',
+	parent: [ 'shiro/accordion' ],
 	supports: {
 		align: [ 'center', 'full' ],
+	},
+
+	attributes: {
+		title: {
+			type: 'string',
+			source: 'html',
+			selector: 'h3',
+		}
 	},
 
 	/**
@@ -32,7 +41,6 @@ export const settings = {
 		setFocus,
 	} ) => {
 		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
-		const ALLOWED_BLOCKS = wp.blocks.getBlockTypes().map(block => block.name).filter(blockName => blockName !== 'shiro/accordion-item');
 		return (
 			<div { ...blockProps }>
 				<div aria-expanded className="accordion-item">
@@ -51,9 +59,7 @@ export const settings = {
 					</div>
 
 					<div className="accordion-item__content">
-						<InnerBlocks
-							allowedBlocks={ ALLOWED_BLOCKS }
-						/>
+						<InnerBlocks />
 					</div>
 				</div>
 			</div>
@@ -61,9 +67,9 @@ export const settings = {
 	},
 
 	/**
-	 * Save nothing, to allow for server-size rendering.
+	 * Save block markup.
 	 */
-		save: ( { attributes } ) => {
+	save: ( { attributes } ) => {
 		return (
 			<div aria-expanded={ false } className="accordion-item">
 				<button className="accordion-item__title">
@@ -79,5 +85,5 @@ export const settings = {
 				</div>
 			</div>
 		);
-		}
+	}
 };
