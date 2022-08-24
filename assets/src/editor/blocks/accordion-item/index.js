@@ -41,7 +41,6 @@ export const settings = {
 	 * Edit the block.
 	 */
 	edit: ( {
-		isSelected,
 		attributes,
 		setAttributes,
 		context,
@@ -50,14 +49,12 @@ export const settings = {
 		const fontColor = context['accordion/fontColor'];
 
 		if ( fontColor !== attributes.fontColor ) {
-			console.log( 'setting color attribute' );
 			setTimeout( () => setAttributes( { fontColor } ) );
 		}
 
-		console.log ( fontColor );
 		return (
 			<div { ...blockProps }>
-				<div className="accordion-item" { ...{ 'aria-expanded': isSelected } } >
+				<div className="accordion-item">
 					<div className="accordion-item__title">
 						<RichText
 							className="accordion-item__title-text"
@@ -85,7 +82,7 @@ export const settings = {
 		const { fontColor, title } = attributes;
 
 		return (
-			<div aria-expanded={ false } className="accordion-item">
+			<div className="accordion-item">
 				<button className="accordion-item__title" style={ fontColor && { color: fontColor } } >
 					<RichText.Content
 						className="accordion-item__title-text"
