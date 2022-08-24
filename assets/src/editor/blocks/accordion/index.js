@@ -1,5 +1,5 @@
 /**
- * Block for inserting links to translated content.
+ * Accordion wrapper block.
  */
 
 /**

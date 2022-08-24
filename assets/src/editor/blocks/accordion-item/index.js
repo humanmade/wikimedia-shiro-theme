@@ -1,5 +1,7 @@
 /**
- * Block for inserting links to translated content.
+ * An expandable "accordion item".
+ *
+ * Child block of the "shiro/accordion" wrapper block.
  */
 
 /**
