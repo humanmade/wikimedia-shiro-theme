@@ -51,8 +51,7 @@
 		}
 	}
 
-	&[aria-expanded="true"],
-	&:focus-within {
+	&[aria-expanded="true"] {
 		.accordion-item__content { // stylelint-disable selector-class-pattern
 			height: auto;
 		}
