@@ -35,15 +35,28 @@
 			}
 		}
 	}
+}
 
-	&__content {
-		height: 0;
-		display: none;
+.block-editor-block-list__block { // specific for the editor.
+	.accordion-item {
+		&__content {
+			height: auto !important;
+			display: block !important;
+		}
 	}
+}
 
-	&[aria-expanded="true"] {
-		.accordion-item__content {
-			display: block;
+:not(.block-editor-block-list__block) {
+	.accordion-item {
+		&__content {
+			height: 0;
+			display: none;
+		}
+
+		&[aria-expanded="true"] {
+			.accordion-item__content {
+				display: block;
+			}
 		}
 	}
 }
