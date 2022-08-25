@@ -54,13 +54,13 @@
 							</PanelBody>
 						</Panel>
 					</InspectorControls>
-					<div className="collapsible-text">
+					<div className="collapsible-text expanded">
 						<div className="collapsible-text__content">
 
 							<InnerBlocks />
 
 							<div className="collapsible-text__button-settings" style={ fontColor && { color: fontColor } }>
-								<div className="collapsible-text__toggle expand">
+								<div className="collapsible-text__toggle">
 									<label>
 										{ __( 'Text of "Read More" button state', 'shiro-admin' )  }
 									</label>
@@ -70,12 +70,12 @@
 										value={ readMore }
 									/>
 								</div>
-								<div className="collapsible-text__button-settings__setting">
+								<div className="collapsible-text__toggle">
 									<label>
 										{ __( 'Text of "Read Less" button state', 'shiro-admin' ) }
 									</label>
 									<RichText
-										className="collapsible-text__toggle collapse"
+										className="collapse"
 										onChange={ readLess => setAttributes( { readLess } ) }
 										value={ readLess }
 									/>
