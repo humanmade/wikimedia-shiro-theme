@@ -1,66 +1,71 @@
-// This is styling is based on this reference https://codepen.io/artursopelnik/pen/wGwXwZ
-
-// Settings
-$collapsible-text: (
-  'rows': 3,
-  'font-size': 16px,
-  'line-height': 1.4,
-  'duration': 500ms,
-  'easing': ease,
-  'text-color': #000000,
-  'trigger-color': #5848B3,
-  'bg-color': #ffffff
-);
-
-// Optimal height based on your font size and line-height
-$collapsible-text-height: map-get($collapsible-text, 'font-size') * map-get($collapsible-text, 'line-height') * (map-get($collapsible-text, 'rows') + 1);
-
-.collapsible__wrapper {
-  line-height: map-get($collapsible-text, 'line-height');
-  padding: 4rem;
-  > * {
-    display: block;
-    margin: 0 auto;
-    max-width: 33.333%;
-  }
-}
+// stylelint-disable selector-class-pattern
 
 .collapsible-text {
-  position: relative;
-  color: map-get($collapsible-text, 'text-color');
-  text-decoration: none;
-  cursor: text;
-  .trigger {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    cursor: pointer;
-    color: map-get($collapsible-text, 'trigger-color');
-    font-weight: bold;
-  }
-  & &__content {
-    position: relative;
-    overflow: hidden;
-    max-height: $collapsible-text-height;
-    transition: max-height map-get($collapsible-text, 'duration') map-get($collapsible-text, 'easing');
-    &::before {
-      content: '';
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) -50%, rgba(map-get($collapsible-text, 'bg-color'), 1) 50%, rgba(map-get($collapsible-text, 'bg-color'), 1) 100%);
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: $collapsible-text-height / 2;
-      transition: opactiy map-get($collapsible-text, 'duration') map-get($collapsible-text, 'easing'), visibility map-get($collapsible-text, 'duration') map-get($collapsible-text, 'easing');
-    }
-  }
-  &.expanded {
-    .collapsible-text__content {
-      max-height: 100%; // great value for height animation
-    }
-    .collapsible-text__content::before,
-    .trigger {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
+	position: relative;
+	text-decoration: none;
+
+	&__content {
+		max-height: 8em;
+		overflow: hidden;
+		padding-bottom: 30px;
+		position: relative;
+		transition: max-height 500ms linear;
+
+		&::before {
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0) -50%, rgba(#fff, 0.8) 50%, #fff 100%);
+			bottom: 0;
+			content: "";
+			height: 100%;
+			position: absolute;
+			transition: opacity 500ms linear;
+			width: 100%;
+		}
+	}
+
+	&__toggle {
+		@include style-guide-button-reset;
+		background: none;
+
+		&:hover {
+			background: #ddd;
+		}
+
+		bottom: 0;
+		display: block;
+		position: absolute;
+
+		.collapse {
+			display: none;
+
+			&::before {
+				content: "\d7";
+				margin-right: 0.5em;
+			}
+		}
+
+		.expand {
+			&::before {
+				content: "\2b";
+				margin-right: 0.5em;
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	&.expanded {
+		.expand {
+			display: none;
+		}
+		.collapse {
+			display: block;
+		}
+
+		.collapsible-text__content {
+			max-height: max-content;
+		}
+
+		.collapsible-text__content::before {
+			opacity: 0;
+		}
+	}
 }

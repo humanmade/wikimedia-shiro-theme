@@ -7,11 +7,11 @@
  */
  import { __ } from '@wordpress/i18n';
 
- import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+ import { InnerBlocks, RichText, useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
- import { PanelBody, SelectControl, RichText } from '@wordpress/components';
+ import { Panel, PanelBody, SelectControl, TextControl } from '@wordpress/components';
 
- import { useState } from '@wordpress/element';
+ import './style.scss';
 
  export const name = 'shiro/collapsible-text';
 
@@ -21,59 +21,77 @@
 		 icon: 'ellipsis',
 		 category: 'wikimedia',
 		 attributes: {
-			content: {
+			readMore: {
 				type: 'string',
 				source: 'html',
-				selector: 'h2',
+				selector: '.expand',
+				default: __( 'Read More', 'shiro-admin' ),
+			},
+			readLess: {
+				type: 'string',
+				source: 'html',
+				selector: '.collapse',
+				default: __( 'Read Less', 'shiro-admin' ),
 			},
 		},
 
+		edit: ( { attributes, setAttributes } ) => {
+			 const { readMore, readLess } = attributes;
 
-		 edit: ( { attributes, setAttributes, setFocus } ) => {
-			 const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
-			 const [ size, setSize ] = useState( '50%' );
 			 return (
-				<>
-				<InspectorControls>
-					<div>
-						<p>Set text display size:</p>
-					</div>
-					<PanelBody>
-				 	<SelectControl
-						label="Size"
-						value={ size }
-						options={ [
-							{ label: 'Big', value: '75%' },
-							{ label: 'Medium', value: '50%' },
-							{ label: 'Small', value: '25%' },
-						] }
-						onChange={ ( newSize ) => setSize( newSize ) }
-					/>
-					</PanelBody>
-			 	</InspectorControls>
-					<div { ...blockProps }>
-						<div class="collapsible-text__wrapper">
-							<div class="collapsible-text" onclick="this.classList.add('expanded')">
-								<div class="collapsible-text__content">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-								</div>
-								<span class="trigger">+ Read more</span>
+				<div className="collapsible-text">
+					<div className="collapsible-text__content">
+
+						<InnerBlocks />
+
+						<div className="collapsible-text__button-settings">
+							<div className="collapsible-text__toggle expand">
+								<label>
+									{ __( 'Text of "Read More" button state', 'shiro-admin' )  }
+								</label>
+								<RichText
+									className="expand"
+									onChange={ readMore => setAttributes( { readMore } ) }
+									value={ readMore }
+								/>
+							</div>
+							<div className="collapsible-text__button-settings__setting">
+								<label>
+									{ __( 'Text of "Read Less" button state', 'shiro-admin' ) }
+								</label>
+								<RichText
+									className="collapsible-text__toggle collapse"
+									onChange={ readLess => setAttributes( { readLess } ) }
+									value={ readLess }
+								/>
 							</div>
 						</div>
 					</div>
-				</>
+				</div>
 			 );
 		 },
-		 save: ( attributes ) => {
+
+		 save: ( { attributes } ) => {
+			 const { readMore, readLess } = attributes;
+
 			 return (
-				<div class="collapsible-text__wrapper">
-					<div class="collapsible-text" onclick="this.classList.add('expanded')">
-						<div class="collapsible-text__content">
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-						</div>
-						<span class="trigger">+ Read more</span>
+				<div className="collapsible-text">
+					<div className="collapsible-text__content">
+						<InnerBlocks.Content />
 					</div>
+					<button type="button" className="collapsible-text__toggle">
+						<RichText.Content
+							className="expand"
+							tagName="span"
+							value={ readMore }
+						/>
+						<RichText.Content
+							className="collapse"
+							tagName="span"
+							value={ readLess }
+						/>
+					</button>
 			  	</div>
 			 );
 		 },
-	 };
+	 }
