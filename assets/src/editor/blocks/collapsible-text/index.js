@@ -7,9 +7,9 @@
  */
  import { __ } from '@wordpress/i18n';
 
- import { InnerBlocks, RichText, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+ import { InnerBlocks, RichText, InspectorControls, useSetting } from '@wordpress/block-editor';
 
- import { Panel, PanelBody, SelectControl, TextControl } from '@wordpress/components';
+ import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 
  import './style.scss';
 
@@ -21,6 +21,9 @@
 		 icon: 'ellipsis',
 		 category: 'wikimedia',
 		 attributes: {
+			fontColor: {
+				type: 'string',
+			},
 			readMore: {
 				type: 'string',
 				source: 'html',
@@ -36,50 +39,63 @@
 		},
 
 		edit: ( { attributes, setAttributes } ) => {
-			 const { readMore, readLess } = attributes;
+			 const { fontColor, readMore, readLess } = attributes;
 
 			 return (
-				<div className="collapsible-text">
-					<div className="collapsible-text__content">
-
-						<InnerBlocks />
-
-						<div className="collapsible-text__button-settings">
-							<div className="collapsible-text__toggle expand">
-								<label>
-									{ __( 'Text of "Read More" button state', 'shiro-admin' )  }
-								</label>
-								<RichText
-									className="expand"
-									onChange={ readMore => setAttributes( { readMore } ) }
-									value={ readMore }
+				<>
+					<InspectorControls>
+						<Panel header= { __( 'Set button text color:', 'shiro-admin' ) } >
+							<PanelBody>
+								<ColorPalette
+									value={ fontColor }
+									colors={ [ ...useSetting( 'color.palette' ) ] }
+									onChange={ fontColor => setAttributes( { fontColor } ) }
 								/>
-							</div>
-							<div className="collapsible-text__button-settings__setting">
-								<label>
-									{ __( 'Text of "Read Less" button state', 'shiro-admin' ) }
-								</label>
-								<RichText
-									className="collapsible-text__toggle collapse"
-									onChange={ readLess => setAttributes( { readLess } ) }
-									value={ readLess }
-								/>
+							</PanelBody>
+						</Panel>
+					</InspectorControls>
+					<div className="collapsible-text">
+						<div className="collapsible-text__content">
+
+							<InnerBlocks />
+
+							<div className="collapsible-text__button-settings" style={ fontColor && { color: fontColor } }>
+								<div className="collapsible-text__toggle expand">
+									<label>
+										{ __( 'Text of "Read More" button state', 'shiro-admin' )  }
+									</label>
+									<RichText
+										className="expand"
+										onChange={ readMore => setAttributes( { readMore } ) }
+										value={ readMore }
+									/>
+								</div>
+								<div className="collapsible-text__button-settings__setting">
+									<label>
+										{ __( 'Text of "Read Less" button state', 'shiro-admin' ) }
+									</label>
+									<RichText
+										className="collapsible-text__toggle collapse"
+										onChange={ readLess => setAttributes( { readLess } ) }
+										value={ readLess }
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</>
 			 );
 		 },
 
 		 save: ( { attributes } ) => {
-			 const { readMore, readLess } = attributes;
+			 const { fontColor, readMore, readLess } = attributes;
 
 			 return (
 				<div className="collapsible-text">
 					<div className="collapsible-text__content">
 						<InnerBlocks.Content />
 					</div>
-					<button type="button" className="collapsible-text__toggle">
+					<button type="button" className="collapsible-text__toggle" style={ fontColor && { color: fontColor } }>
 						<RichText.Content
 							className="expand"
 							tagName="span"
