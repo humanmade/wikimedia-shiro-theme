@@ -1,0 +1,60 @@
+.accordion-wrapper {
+	overflow: hidden;
+}
+
+.accordion-item {
+	border-bottom: 1px solid;
+	overflow: hidden;
+	padding: 14px 20px;
+
+	&__title {
+		align-items: center;
+		background: none;
+		border: 0;
+		cursor: pointer;
+		display: flex;
+		font-size: 26px;
+		position: relative;
+		text-align: left;
+		width: 100%;
+
+		&-text {
+			font-weight: 400;
+			margin-bottom: 0;
+		}
+
+		&::after {
+			content: "\d7";
+			display: flex;
+			font-size: 20px;
+			position: absolute;
+			right: 0;
+			transform: rotate(45deg);
+			width: 20px;
+
+			.accordion-item[aria-expanded] & {
+				transform: rotate(0deg);
+			}
+		}
+
+		&:hover {
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	&__content {
+		height: 0;
+		overflow: hidden;
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&[aria-expanded] {
+		.accordion-item__content { // stylelint-disable selector-class-pattern
+			height: auto;
+			padding-top: 14px;
+		}
+	}
+}

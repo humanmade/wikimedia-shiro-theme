@@ -73,6 +73,8 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/unseen-facts',
 		'shiro/unseen-footer',
 		'shiro/unseen-intro',
+		'shiro/accordion',
+		'shiro/accordion-item',
 
 		// Core blocks
 		'core/paragraph',
