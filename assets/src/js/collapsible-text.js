@@ -16,10 +16,10 @@ const toggleCollapsibleArea = ( { target } ) =>
  *
  * @returns {HTMLElement[]} All toggle buttons on the current page.
  */
-const init = () => {
+const initializeCollapsibleTextBlocks = () => {
 	[ ...document.querySelectorAll( '.collapsible-text__toggle' ) ].forEach(
 		button => button.addEventListener( 'click', toggleCollapsibleArea )
 	);
 };
 
-document.addEventListener( 'DOMContentLoaded', init );
+document.addEventListener( 'DOMContentLoaded', initializeCollapsibleTextBlocks );
