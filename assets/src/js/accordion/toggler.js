@@ -14,7 +14,7 @@ const toggleAccordionItem = e => {
 	const wrapper = e.target.closest( '.accordion-wrapper' );
 	const isExpanded = parent.getAttribute( 'aria-expanded' );
 
-	closeAllItems( wrapper ); // closes any opened item.
+	closeAllAccordionItems( wrapper ); // closes any opened item.
 
 	// Open items should have the empty string as the attribute value.
 	parent.toggleAttribute( 'aria-expanded', isExpanded !== '' );
@@ -25,7 +25,7 @@ const toggleAccordionItem = e => {
  *
  * @param {HTMLElement} wrapper Accordion wrapper div.
  */
-const closeAllItems = wrapper => {
+const closeAllAccordionItems = wrapper => {
 	[ ...wrapper.querySelectorAll( '.accordion-item' ) ].forEach(
 		accordionItem => accordionItem.removeAttribute( 'aria-expanded' )
 	);
@@ -36,7 +36,7 @@ const closeAllItems = wrapper => {
  *
  * @param {Element} item The concerned element.
  */
-const addHandlers = item => {
+const addAccordionToggleHandlers = item => {
 	const button = item.querySelector( '.accordion-item__title' );
 	button.addEventListener( 'click', toggleAccordionItem );
 };
@@ -46,9 +46,9 @@ const addHandlers = item => {
  *
  * @returns {void}
  */
-const init = () => {
+const initializeAccordionItems = () => {
 	// Hook in click events to each item.
-	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addHandlers( item ) );
+	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
 };
 
-document.addEventListener( 'DOMContentLoaded', init );
+document.addEventListener( 'DOMContentLoaded', initializeAccordionItems );
