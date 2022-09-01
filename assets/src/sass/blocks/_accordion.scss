@@ -20,15 +20,16 @@
 
 		&-text {
 			font-weight: 400;
-			margin: 0 1.5em 0 0;
+			margin: 0 1.5em 0 0; /*rtl: margin: 0 0 0 1.5em;*/
 		}
 
 		&::after {
 			content: "\d7";
 			display: flex;
 			font-size: 20px;
+			left: unset; /*rtl: 0*/
 			position: absolute;
-			right: 0;
+			right: 0; /*rtl: unset*/
 			transform: rotate(45deg);
 			width: 20px;
 
