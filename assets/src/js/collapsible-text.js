@@ -6,10 +6,13 @@
  * Handle a click event on the collapsible area's toggle button.
  *
  * @param {Event} Click event.
- * @returns {HTMLElement} Target element.
  */
-const toggleCollapsibleArea = ( { target } ) =>
-	target.closest( '.collapsible-text' ).classList.toggle( 'expanded' );
+const toggleCollapsibleArea = ( { currentTarget } ) => {
+	const expanded = currentTarget.closest( '.collapsible-text' ).classList.toggle( 'expanded' );
+	if ( ! expanded ) {
+		currentTarget.scrollIntoView( { block: 'center' } );
+	}
+};
 
 /**
  * Attach listeners to any collapsible area triggers.
