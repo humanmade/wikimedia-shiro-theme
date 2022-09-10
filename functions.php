@@ -173,7 +173,7 @@ function wmf_add_piwik_analytics() {
         (function() {
         var u="//piwik.wikimedia.org/";
         _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '<?php echo esc_html( get_site_option( 'contest_status' ) ) ?>']);
+        _paq.push(['setSiteId', '<?php echo esc_attr( get_site_option( 'matomo_siteid' ) ) ?>']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
         })();
         </script>

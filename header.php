@@ -33,7 +33,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <?php
 // If set, configure 'featured image' as 'og:image'.
 if ( get_the_post_thumbnail_url( get_the_ID() ) )
-	echo esc_html( '<meta property="og:image" content="' . get_the_post_thumbnail_url( get_the_ID() ) . '" />' );
+	echo esc_attr( '<meta property="og:image" content="' . get_the_post_thumbnail_url( get_the_ID() ) . '" />' );
 ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
