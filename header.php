@@ -23,6 +23,7 @@ $wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip t
 $wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro-admin' ) );
 $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro-admin' ) );
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
+$wmf_post_thumbnail_url = get_the_post_thumbnail_url( get_the_ID() );
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <?php
 // If set, configure 'featured image' as 'og:image'.
 if ( get_the_post_thumbnail_url( get_the_ID() ) ): ?>
-	<meta property="og:image" content="<?php echo esc_url( 'get_the_post_thumbnail_url( get_the_ID()' ) ?>" />
+	<meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ) ?>" />
 <?php endif; ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
