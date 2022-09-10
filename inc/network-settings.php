@@ -5,12 +5,14 @@
  * @package shiro
  */
 
+namespace Network_Settings;
+
 /**
  * Bootstrap network functionality.
  */
 function bootstrap() {
-	add_action( 'network_admin_menu', 'add_menu_and_fields' );
-	add_action( 'network_admin_edit_seo_settings_page', 'seo_settings_page_update' );
+	add_action( 'network_admin_menu', __NAMESPACE__ . '\\add_menu_and_fields' );
+	add_action( 'network_admin_edit_seo_settings_page', __NAMESPACE__ . '\\contest_settings_page_update' );
 }
 
 /**
@@ -23,13 +25,13 @@ function add_menu_and_fields() {
 		__( 'Search Engine Optimization', 'shiro-seo-admin' ),
 		'manage_network_options',
 		'seo_settings_page',
-		'render_settings_page'
+		__NAMESPACE__ . '\\render_settings_page'
 	);
 
 	add_settings_section(
 		'matomo_settings_section',
 		__( 'Matomo settings', 'shiro-seo-admin' ),
-		'matomo_settings_section_content',
+		__NAMESPACE__ . '\\matomo_settings_section_content',
 		'seo_settings_page'
 	);
 
@@ -38,7 +40,7 @@ function add_menu_and_fields() {
 	add_settings_field(
 		'matomo_siteid_field',
 		__( 'Enter Matomo Site ID', 'shiro-seo-admin' ),
-		'matomo_siteid_field_content',
+		__NAMESPACE__ . '\\matomo_siteid_field_content',
 		'seo_settings_page',
 		'matomo_settings_section'
 	);
