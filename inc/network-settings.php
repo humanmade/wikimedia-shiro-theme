@@ -12,7 +12,7 @@ namespace Network_Settings;
  */
 function bootstrap() {
 	add_action( 'network_admin_menu', __NAMESPACE__ . '\\add_menu_and_fields' );
-	add_action( 'network_admin_edit_seo_settings_page', __NAMESPACE__ . '\\contest_settings_page_update' );
+	add_action( 'network_admin_edit_seo_settings_page', __NAMESPACE__ . '\\seo_settings_page_update' );
 }
 
 /**
@@ -21,8 +21,8 @@ function bootstrap() {
 function add_menu_and_fields() {
 	add_submenu_page(
 		'settings.php',
+		__( 'Search Engine Optimization Settings', 'shiro-seo-admin' ),
 		__( 'SEO Settings', 'shiro-seo-admin' ),
-		__( 'Search Engine Optimization', 'shiro-seo-admin' ),
 		'manage_network_options',
 		'seo_settings_page',
 		__NAMESPACE__ . '\\render_settings_page'
