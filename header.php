@@ -32,9 +32,9 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
 // If set, configure 'featured image' as 'og:image'.
-if ( get_the_post_thumbnail_url( get_the_ID() ) )
-	echo esc_attr( '<meta property="og:image" content="' . get_the_post_thumbnail_url( get_the_ID() ) . '" />' );
-?>
+if ( get_the_post_thumbnail_url( get_the_ID() ) ): ?>
+	<meta property="og:image" content="<?php echo esc_url( 'get_the_post_thumbnail_url( get_the_ID()' ) ?>" />
+<?php endif; ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
 </head>
