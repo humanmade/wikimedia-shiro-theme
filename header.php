@@ -33,11 +33,11 @@ $wmf_ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php 
 // If set, configure 'featured image' as 'og:image'.
-if ( $wmf_post_thumbnail_url ): ?>
+if ( $wmf_post_thumbnail_url  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
     <meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ) ?>" />
 <?php
 // If set, configure 'ogmeta_ogimageurl' as 'og:image'.
-elseif ( $wmf_ogmeta_ogimageurl ): ?>
+elseif ( $wmf_ogmeta_ogimageurl  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
 	<meta property="og:image" content="<?php echo esc_url( $wmf_ogmeta_ogimageurl ) ?>" />
 <?php endif; ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
