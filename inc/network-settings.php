@@ -56,7 +56,7 @@ function add_menu_and_fields() {
 
 	add_settings_field(
 		'ogmeta_ogimageurl_field',
-		__( 'Select image for OG:Image', 'shiro-seo-admin' ),
+		__( 'Set URL of image for OG:Image', 'shiro-seo-admin' ),
 		__NAMESPACE__ . '\\ogmeta_ogimageurl_field_content',
 		'seo_settings_page',
 		'ogmeta_settings_section'
