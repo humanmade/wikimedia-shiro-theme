@@ -133,9 +133,9 @@ function ogmeta_ogimageurl_field_content() {
 		?>
 		<label>
 			<input
-				type="image"
+				type="url"
 				name="ogmeta_ogimageurl"
-				value="<?php echo esc_html( $ogmeta_ogimageurl ); ?>"
+				value="<?php echo esc_url( $ogmeta_ogimageurl ); ?>"
 			>
 		</label>
 		<?php
