@@ -120,7 +120,7 @@ function matomo_siteid_field_content() {
  * Open Graph protocol settings section content.
  */
 function ogmeta_settings_section_content() {
-	esc_html_e( 'Use the options below to configure <a href="https://ogp.me/" target="_blank">Open Graph protocol</a> values for the entire network of sites.', 'shiro-seo-admin' );
+	esc_html_e( 'Use the options below to configure Open Graph protocol values for the entire network of sites.', 'shiro-seo-admin' );
 }
 
 /**
