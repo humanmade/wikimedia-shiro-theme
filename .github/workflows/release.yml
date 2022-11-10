@@ -2,15 +2,15 @@ name: Release
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
 jobs:
   release:
-    name: Build project
+    name: Update release branch
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -18,18 +18,25 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
-      - name: Update release branch
-        uses: technote-space/release-github-actions@v7
+      - name: Check out release branch
+        uses: actions/checkout@v2
         with:
-          BRANCH_NAME: release
-          BUILD_COMMAND_TARGET: 'build'
-          CLEAN_TEST_TAG: true
-          CLEAN_TARGETS: .[!.]*,__tests__,src,package.json,package-lock.json,node_modules,tests,*.xml.dist
-          COMMIT_MESSAGE: "Built release for ${{ steps.get_version.outputs.VERSION }}. For a full change log look at the notes within the original/${{ steps.get_version.outputs.VERSION }} release."
-          CREATE_MAJOR_VERSION_TAG: false
-          CREATE_MINOR_VERSION_TAG: false
-          CREATE_PATCH_VERSION_TAG: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORIGINAL_TAG_PREFIX: original/
-          OUTPUT_BUILD_INFO_FILENAME: build.json
-          TEST_TAG_PREFIX: test/
+          ref: release
+      
+      - name: Merge production branch
+        run: |
+          git fetch origin
+          git checkout -b tmp origin/main
+          git merge -s ours origin/release
+          git checkout release
+          git merge tmp
+          git branch -D tmp
+      
+      - name: Build code
+        run: |
+          npm ci
+          npm run build:theme
+      
+      - name: Update release branch
+        run: |
+          git push release:release
