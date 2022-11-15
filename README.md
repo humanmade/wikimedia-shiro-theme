@@ -1,6 +1,8 @@
 Wikimedia's Shiro Theme
 ===
 
+**[Development of this theme has moved to `wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme)**.
+
 This theme was originally forked from the Reaktiv Studios starter theme and [Underscores](https://github.com/Automattic/_s) with quite a few additions. The following documentation runs through the basics of the theme and any commands you may need to follow.
 
 Folder Structure
